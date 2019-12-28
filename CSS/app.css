@@ -1,0 +1,22 @@
+h1 {
+	/*HEXDECIMAL: #_ _ (red) _ _ (green) _ _ (blue)*/
+	/*RGB: rgb(red, green, blue)   (0 ~ 255)*/
+	/*RGBA: rgba(red, green, blue,(0~255) transparency(0~1))*/
+	color: rgba(123, 234, 12, 0.5);
+	/*border-color: purple;
+	border-width: 5px;
+	border-style: solid;*/
+
+	border: 2px dashed red;
+}
+
+h4 {
+	background: rgb(255, 100, 80);
+}
+
+body {
+	background: pink;
+/*	background: url(https://www.smokeyroadrodshop.com/Premier_Series.jpeg);
+	background-repeat: no-repeat;
+	background-size: cover;*/
+}

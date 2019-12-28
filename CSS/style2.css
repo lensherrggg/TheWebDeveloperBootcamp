@@ -1,0 +1,25 @@
+p {
+
+/*Content - Width and Height*/
+
+width: 50%; /*50% of the page*/
+
+/*Border*/
+
+border: 2px solid blue;
+
+/*Padding: Space between element and border*/ 
+
+/*padding: 10px;*/
+padding-left: 40px;
+
+/*Margin: Space outside bordern, between elements*/
+
+/*margin: 100px;*/
+/*margin-top: 500px;*/
+/*margin: 20px 40px 500px 100px; /*top right bottom left*/
+/*margin: 0 auto 0 auto;*/
+margin: 0 auto;
+margin: 50px 20px;
+
+}

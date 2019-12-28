@@ -1,0 +1,35 @@
+/*border 20px*/
+/*border color: #bdc3c7*/
+/*date color: #3498db uppercase space between letters*/
+/*h2 color #2c3e50*/
+/*font: source sans pro*/
+
+body {
+	font-family: Source Sans Pro;
+	border: 20px solid #bdc3c7;
+	padding: 20px;
+	max-width: 700px;
+	width: 80%;
+	margin: 20px auto auto;
+}
+
+h2 {
+	color: #2c3e50;
+	font-size: 2.0rem;
+	font-weight: 900;
+}
+
+.date {
+	text-transform: uppercase;
+	color: #3498db;
+	letter-spacing: 0.2rem;
+}
+
+.firstpara {
+	border-left: 5px solid #bdc3c7;
+	padding-left: 5px;
+}
+
+.post {
+	margin-bottom: 20px;
+}
