@@ -1,5 +1,4 @@
 import { SET_CURRENT_USER } from '../actionTypes';
-import { act } from 'react-dom/test-utils';
 
 const DEFAULT_STATE = {
   isAuthenticated: false,
