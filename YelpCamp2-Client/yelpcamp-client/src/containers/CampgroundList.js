@@ -1,14 +1,14 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { fetchCampgrounds } from '../store/actions/campgrounds';
+import { fetchCampgrounds, removeCampground } from '../store/actions/campgrounds';
 import CampgroundItem from '../components/CampgroundItem';
 
-class MessageList extends Component {
+class CampgroundList extends Component {
   componentDidMount() {
     this.props.fetchCampgrounds();
   }
   render() {
-    const { campgrounds, myid } = this.props;
+    const { campgrounds, myid, fetchCampgroundDetail, removeCampground } = this.props;
     let campgroundList = campgrounds.map(c => (
       <CampgroundItem 
         key={c._id} 
@@ -18,12 +18,14 @@ class MessageList extends Component {
         price={c.price} 
         description={c.description} 
         myid={myid}
-        username={c.user.username} 
+        user={c.user}
         image={c.image}
+        fetchCampgroundDetail={fetchCampgroundDetail}
+        removeCampground={removeCampground.bind(this, c.user._id, c._id)}
       />
     ));
     return (
-      <div className="row">
+      <div className="row campground-group">
           {campgroundList}
       </div>
     )
@@ -33,8 +35,8 @@ class MessageList extends Component {
 function mapStateToProps(state) {
   return {
     campgrounds: state.campgrounds,
-    myid: state.currentUser.user.id
+    myid: state.currentUser.user.id,
   };
 }
 
-export default connect(mapStateToProps, { fetchCampgrounds })(MessageList);
+export default connect(mapStateToProps, { fetchCampgrounds, removeCampground })(CampgroundList);

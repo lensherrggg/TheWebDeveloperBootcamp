@@ -3,8 +3,12 @@ import { Switch, Route, withRouter, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import Homepage from '../components/Homepage';
 import AuthForm from '../components/AuthForm';
+import CampgroundDetail from '../components/CampgroundDetail';
 import { authUser } from '../store/actions/auth';
 import { removeError } from '../store/actions/errors';
+import withAuth from '../hocs/withAuth';
+import CampgroundForm from '../containers/CampgroundForm';
+import CommentForm from '../containers/CommentForm';
 
 const Main = props => {
   const { authUser, errors, removeError, currentUser } = props;
@@ -22,6 +26,13 @@ const Main = props => {
             <AuthForm removeError={removeError} errors={errors} onAuth={authUser} signUp buttonText="Sign me up" heading="Join YelpCamp" {...props} />
           )
         }} />
+        <Route exact path="/users/:id/campgrounds" component={withAuth(CampgroundForm)} />
+        <Route exact path="/users/:id/campgrounds/:campground_id" render={props => {
+          return (
+            <CampgroundDetail {...props} />
+          )
+        }} />
+        <Route exact path="/users/:id/campgrounds/:campground_id/comments" component={withAuth(CommentForm)} />
       </Switch>
     </div>
   )

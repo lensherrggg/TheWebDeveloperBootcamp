@@ -14,7 +14,10 @@ const Homepage = ({ currentUser }) => {
     );
   }
   return (
-    <div className="campground-group">
+    <div>
+      <div className="main-page img-fluid">
+        <h1>Bring You The Whole World</h1>
+      </div>
       <CampgroundTimeline />
     </div>
   )

@@ -25,7 +25,31 @@ exports.createCampground = async function(req, res, next) {
 // GET /api/user/:id/campgrounds/:campground_id
 exports.getCampground = async function(req, res, next) {
   try {
-    let campground = await db.Campground.findById(req.params.campground_id);
+    // let campground = await db.Campground.findById(req.params.campground_id)
+    //   .populate("user", {
+    //     username: true
+    //   })
+    //   .populate("comments", {
+    //     text: true,
+    //     createdAt: true,
+    //     user: true
+    //   })
+    let campground = await db.Campground.findById(req.params.campground_id)
+      .populate({
+        path: 'user',
+        select: ['username']
+      })
+      .populate({
+        path: 'comments',
+        select: ['text', 'campground', 'createdAt'],
+        populate: {
+          path: 'user',
+          select: 'username'
+        }
+      })
+      .sort({
+        createdAt: -1
+      });
     return res.status(200).json(campground);
   } catch (err) {
     return next(err);
