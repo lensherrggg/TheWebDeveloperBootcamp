@@ -20,6 +20,27 @@ exports.createComment = async function(req, res, next) {
   }
 }
 
+// GET /api.users/:id/campgrounds/:campground_id/comments
+exports.getComments = async function(req, res, next) {
+  try {
+    let foundCampground = await db.Campground.findById(req.params.campground_id)
+      .populate({
+        path: 'comments',
+        select: ['text', 'campground', 'createdAt'],
+        populate: {
+          path: 'user',
+          select: 'username'
+        }
+      })
+      .sort({
+        createdAt: "desc"
+      });
+    return res.status(200).json(foundCampground.comments);
+  } catch (err) {
+    return next(err);
+  }
+}
+
 // DELETE /api/users/:id/campgrounds/:campground_id/comments/:comment_id
 exports.deleteComment = async function(req, res, next) {
   try {

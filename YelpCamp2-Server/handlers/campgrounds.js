@@ -42,13 +42,13 @@ exports.getCampground = async function(req, res, next) {
       .populate({
         path: 'comments',
         select: ['text', 'campground', 'createdAt'],
+        sort: {
+          createdAt: "desc"
+        },
         populate: {
           path: 'user',
-          select: 'username'
+          select: 'username',
         }
-      })
-      .sort({
-        createdAt: -1
       });
     return res.status(200).json(campground);
   } catch (err) {

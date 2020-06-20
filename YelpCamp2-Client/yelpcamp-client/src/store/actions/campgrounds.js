@@ -1,5 +1,5 @@
 import { apiCall } from '../../services/api';
-import { LOAD_CAMPGROUNDS, LOAD_CAMPGROUND_DETAIL, LOAD_COMMENTS, REMOVE_CAMPGROUND, REMOVE_COMMENT } from '../actionTypes';
+import { LOAD_CAMPGROUNDS, LOAD_CAMPGROUND_DETAIL, LOAD_COMMENTS, REMOVE_CAMPGROUND, REMOVE_COMMENT, ADD_COMMENT } from '../actionTypes';
 import { addError } from './errors';
 
 export const loadCampgrounds = campgrounds => ({
@@ -17,15 +17,20 @@ export const loadComments = comments => ({
   comments
 });
 
+export const addComment = comment => ({
+  type: ADD_COMMENT,
+  comment
+});
+
 export const removeCamp = id => ({
   type: REMOVE_CAMPGROUND,
   id
-})
+});
 
 export const removeComm = id => ({
   type: REMOVE_COMMENT,
   id
-})
+});
 
 export const fetchCampgrounds = () => {
   return dispatch => {
@@ -52,6 +57,18 @@ export const fetchCampgroundDetail = (user_id, campground_id) => {
   }
 }
 
+export const fetchComments = (user_id, campground_id) => {
+  return dispatch => {
+    return apiCall('get', `/api/users/${user_id}/campgrounds/${campground_id}/comments`)
+      .then(res => {
+        dispatch(loadComments(res));
+      })
+      .catch(err => {
+        dispatch(addError(err.message));
+      });
+  }
+}
+
 export const postNewCampground = (name, price, image, description) => (dispatch, getState) => {
   let { currentUser } = getState();
   const id = currentUser.user.id;
@@ -66,7 +83,9 @@ export const postNewComment = (text, campground_id) => (dispatch, getState) => {
   let { currentUser } = getState();
   const id = currentUser.user.id;
   return apiCall('post', `/api/users/${id}/campgrounds/${campground_id}/comments`, { text })
-    .then(res => {})
+    .then(res => {
+      dispatch(addComment(res));
+    })
     .catch(err => {
       addError(err.message);
     });

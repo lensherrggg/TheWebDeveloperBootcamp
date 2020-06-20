@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { fetchCampgroundDetail } from '../store/actions/campgrounds'
+import { fetchCampgroundDetail, fetchComments } from '../store/actions/campgrounds'
 import CommentList from '../containers/CommentList';
 
 class CampgroundDetail extends Component {
   componentDidMount() {
     this.props.fetchCampgroundDetail(this.props.match.params.id, this.props.match.params.campground_id);
+    // this.props.fetchComments(this.props.match.params.id, this.props.match.params.campground_id);
   }
 
   render() {
@@ -63,4 +64,4 @@ function mapStateToProps(state) {
   };
 }
 
-export default connect(mapStateToProps, { fetchCampgroundDetail })(CampgroundDetail);
+export default connect(mapStateToProps, { fetchCampgroundDetail, fetchComments })(CampgroundDetail);
