@@ -114,6 +114,15 @@ ul.nav.navbar-nav li {
   color: white;
 }
 
+.latlon {
+  margin-right: 5%;
+}
+
+.latlon label {
+  margin-right: 1%;
+  margin-bottom: 3%;
+}
+
 .main-page {
   position: absolute;
   top: 0;
@@ -193,4 +202,9 @@ ul.nav.navbar-nav li {
 
 .new-comment-form {
   margin-top: 9%;
+}
+
+.map {
+  margin-top: 3%;
+  margin-left: 2%;
 }

@@ -1,5 +1,5 @@
 import { apiCall } from '../../services/api';
-import { LOAD_CAMPGROUNDS, LOAD_CAMPGROUND_DETAIL, LOAD_COMMENTS, REMOVE_CAMPGROUND, REMOVE_COMMENT, ADD_COMMENT } from '../actionTypes';
+import { LOAD_CAMPGROUNDS, LOAD_CAMPGROUND_DETAIL, LOAD_COMMENTS, LOAD_LOCATION, REMOVE_CAMPGROUND, REMOVE_COMMENT, ADD_COMMENT } from '../actionTypes';
 import { addError } from './errors';
 
 export const loadCampgrounds = campgrounds => ({
@@ -10,7 +10,12 @@ export const loadCampgrounds = campgrounds => ({
 export const loadCampgroundDetail = campgroundDetail => ({
   type: LOAD_CAMPGROUND_DETAIL,
   campgroundDetail
-})
+});
+
+export const loadLocation = location => ({
+  type: LOAD_LOCATION,
+  location
+});
 
 export const loadComments = comments => ({
   type: LOAD_COMMENTS,
@@ -50,6 +55,8 @@ export const fetchCampgroundDetail = (user_id, campground_id) => {
       .then(res => {
         dispatch(loadCampgroundDetail(res));
         dispatch(loadComments(res.comments));
+        const location = {lat: res.latitude, lng: res.longitude}
+        dispatch(loadLocation(location));
       })
       .catch(err => {
         dispatch(addError(err.message));
@@ -69,10 +76,10 @@ export const fetchComments = (user_id, campground_id) => {
   }
 }
 
-export const postNewCampground = (name, price, image, description) => (dispatch, getState) => {
+export const postNewCampground = (name, price, latitude, longitude, image, description) => (dispatch, getState) => {
   let { currentUser } = getState();
   const id = currentUser.user.id;
-  return apiCall("post", `/api/users/${id}/campgrounds`, { name, price, image, description })
+  return apiCall("post", `/api/users/${id}/campgrounds`, { name, price, latitude, longitude, image, description })
     .then(res => {})
     .catch(err => {
       addError(err.message);

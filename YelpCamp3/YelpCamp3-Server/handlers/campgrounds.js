@@ -6,6 +6,8 @@ exports.createCampground = async function(req, res, next) {
     let campground = await db.Campground.create({
       name: req.body.name,
       price: req.body.price,
+      latitude: req.body.latitude,
+      longitude: req.body.longitude,
       image: req.body.image,
       description: req.body.description,
       user: req.params.id
@@ -25,15 +27,6 @@ exports.createCampground = async function(req, res, next) {
 // GET /api/user/:id/campgrounds/:campground_id
 exports.getCampground = async function(req, res, next) {
   try {
-    // let campground = await db.Campground.findById(req.params.campground_id)
-    //   .populate("user", {
-    //     username: true
-    //   })
-    //   .populate("comments", {
-    //     text: true,
-    //     createdAt: true,
-    //     user: true
-    //   })
     let campground = await db.Campground.findById(req.params.campground_id)
       .populate({
         path: 'user',
@@ -63,12 +56,16 @@ exports.updateCampground = async function(req, res, next) {
     if (foundCampground.user.equals(req.params.id)) {
       let updatedName = req.body.name ? req.body.name : foundCampground.name;
       let updatedPrice = req.body.price ? req.body.price : foundCampground.price;
+      let updatedLat = req.body.latitude ? req.body.latitude : foundCampground.latitude;
+      let updatedLong = req.body.longitude ? req.body.longitude : foundCampground.longitude;
       let updatedImage = req.body.image ? req.body.image : foundCampground.image;
       let updatedDescription = req.body.description ? req.body.description : foundCampground.description;
       
       await foundCampground.update({
         name: updatedName,
         price: updatedPrice,
+        latitude: updatedLat,
+        longitude: updatedLong,
         image: updatedImage,
         description: updatedDescription
       });

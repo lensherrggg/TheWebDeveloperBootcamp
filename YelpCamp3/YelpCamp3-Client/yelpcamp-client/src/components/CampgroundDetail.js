@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { fetchCampgroundDetail, fetchComments } from '../store/actions/campgrounds'
+import MapContainer from '../containers/MapContainer';
 import CommentList from '../containers/CommentList';
 
 class CampgroundDetail extends Component {
@@ -10,7 +11,8 @@ class CampgroundDetail extends Component {
   }
 
   render() {
-    const { name, price, image, description, comments, campground } = this.props;
+    const { name, price, location, image, description, comments, campground } = this.props;
+
     return (
       <div>
         <div className="navi-bg"></div>
@@ -22,6 +24,10 @@ class CampgroundDetail extends Component {
               <li className="list-group-item">Info 2</li>
               <li className="list-group-item">Info 3</li>
             </div>
+            <div className="map">
+              <MapContainer google={true} location={location} />
+            </div>
+            
           </div>
           <div className="col-md-9">
             <div className="detail-area img-thumbnail">
@@ -57,6 +63,7 @@ function mapStateToProps(state) {
     me: state.currentUser.user,
     name: state.campgroundDetail.name,
     price: state.campgroundDetail.price,
+    location: state.location,
     image: state.campgroundDetail.image,
     description: state.campgroundDetail.description,
     comments: state.comments,

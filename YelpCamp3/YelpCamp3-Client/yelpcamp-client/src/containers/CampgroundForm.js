@@ -15,10 +15,12 @@ class MessageForm extends Component {
 
   handleNewCampground = event => {
     event.preventDefault();
-    this.props.postNewCampground(this.state.name, this.state.price, this.state.image, this.state.description);
+    this.props.postNewCampground(this.state.name, this.state.price, this.state.latitude, this.state.longitude, this.state.image, this.state.description);
     this.setState({
       name: "",
       price: "",
+      latitude: "",
+      longitude: "",
       image: "",
       description: ""
     });
@@ -58,6 +60,32 @@ class MessageForm extends Component {
               vlaue={this.state.price}
               onChange={e => this.setState({ price: e.target.value })}
             />
+          </div>
+          <div className="form-group">
+            <div className="form-inline">
+              <div className="form-inline latlon">
+                <label htmlFor="latitude">Latitude: </label>
+                <input 
+                  type="text" 
+                  className="form-control" 
+                  id="latitude"
+                  name="latitude"
+                  vlaue={this.state.latitude}
+                  onChange={e => this.setState({ latitude: e.target.value })}
+                />
+              </div>
+              <div className="form-inline latlon">
+                <label htmlFor="longitude">Longitude: </label>
+                <input 
+                  type="text" 
+                  className="form-control" 
+                  id="longitude"
+                  name="longitude"
+                  vlaue={this.state.longitude}
+                  onChange={e => this.setState({ longitude: e.target.value })}
+                />
+              </div>
+            </div>
           </div>
           <div className="form-group">
             <label htmlFor="image">Image: </label>
