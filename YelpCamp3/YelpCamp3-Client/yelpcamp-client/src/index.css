@@ -1,0 +1,196 @@
+body {
+  background-color: #ececf0;
+}
+
+/* Nav */
+
+.navbar {
+  margin-bottom: 1rem;
+}
+
+.navbar a {
+  font-weight: bold;
+  color: white;
+}
+
+.navbar a:hover {
+  text-decoration: underline;
+  cursor: pointer;
+  color: white;
+}
+
+ul.nav.navbar-nav li {
+  margin: 0 0.5rem;
+}
+
+/* .onboarding {
+  position: relative;
+} */
+
+.onboarding > .navbar {
+  position: absolute;
+  width: 100%;
+  top: 0;
+  left: 0;
+  height: 3.5em;
+}
+
+.onboarding h1 {
+  margin-bottom: 0.5em;
+}
+
+.home-hero {
+  color: white;
+  width: 100vw;
+  height: 100vh;
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  z-index: -1;
+  background-image: url('./images/WhiteCoupe.jpeg');
+  background-repeat: no-repeat;
+  background-position: center center;
+  text-align: center;
+  padding: 1rem;
+  background-position: center center;
+  background-size: cover;
+}
+
+.auth-form {
+  color: white;
+  width: 100vw;
+  height: 100vh;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-image: url('./images/logging.jpeg');
+  background-repeat: no-repeat;
+  background-position: center center;
+  z-index: -1;
+}
+
+.auth-form form {
+  margin-top: 12%;
+  width: 30%
+}
+
+.campground-group {
+  margin: 2%;
+  margin-top: 74vh;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.time {
+  font-size: small;
+}
+
+.camp-card {
+  margin-top: 3%;
+  padding: 3%;
+}
+
+.camp-card > .camp-desc {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.img-thumbnail img {
+  margin-bottom: 3%;
+}
+
+.operation-button a {
+  margin: 2% 3% 0 0;
+  color: white;
+}
+
+.new-campground-form {
+  margin-top: 10%;
+  color: white;
+}
+
+.main-page {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 70%;
+  background-image: url('./images/mainpage.jpeg');
+  background-repeat: no-repeat;
+  background-position: center center;
+  z-index: -1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+}
+
+.camp-form-picture {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-image: url('./images/formpic.jpeg');
+  background-repeat: no-repeat;
+  background-position: center center;
+  z-index: -1;
+}
+
+.navi-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 7vh;
+  background-color: grey;
+  z-index: -1;
+}
+
+.detail {
+  margin-top: 9%;
+}
+
+.detail-area {
+  padding: 3%;
+}
+
+.comment-cards-group {
+  margin-top: 5%;
+  padding: 3%
+}
+
+.comment-text {
+  margin-top: 3%;
+}
+
+.comment-card {
+  border-bottom: solid 0.5px grey;
+  padding: 1%;
+  padding-bottom: 0;
+  margin: 2%
+}
+
+.comment-card > a {
+  margin-top: 2%;
+  color: white;
+}
+
+.comment-form-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 7vh;
+  background-color: grey;
+  z-index: -1;
+}
+
+.new-comment-form {
+  margin-top: 9%;
+}
